@@ -2,6 +2,11 @@ package com.example.taller3;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,13 +17,49 @@ import java.net.URL;
 
 public class ListaLugares extends AppCompatActivity {
 
-    String DATA_URL="";
+    String DATA_URL="http://www.mocky.io/v2/5ea8e7e02d000097883a4159";
     Consultar obj= null;
+    private Spinner spinDeparta;
+    private ListView listaProvi;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar);
 
+        spinDeparta=(Spinner)findViewById(R.id.spinDeparta);
+        listaProvi=(ListView)findViewById(R.id.listProvi);
+
+        ArrayAdapter spinAdapter = ArrayAdapter.createFromResource(this,R.array.Depas, android.R.layout.simple_spinner_item);
+        spinDeparta.setAdapter(spinAdapter);
+
+        spinDeparta.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> lista, View view, int pos, long id) {
+                if(lista.getItemAtPosition(pos).equals("Lima")){
+                    ArrayAdapter listaAdapter = ArrayAdapter.createFromResource(ListaLugares.this,R.array.Lima,android.R.layout.simple_list_item_1);
+                    listaProvi.setAdapter(listaAdapter);
+                }
+                if(lista.getItemAtPosition(pos).equals("Antioquia")){
+                    ArrayAdapter listaAdapter = ArrayAdapter.createFromResource(ListaLugares.this,R.array.Antioquia,android.R.layout.simple_list_item_1);
+                    listaProvi.setAdapter(listaAdapter);
+                }
+                if(lista.getItemAtPosition(pos).equals("ValleCauca")){
+                    ArrayAdapter listaAdapter = ArrayAdapter.createFromResource(ListaLugares.this,R.array.ValleCauca,android.R.layout.simple_list_item_1);
+                    listaProvi.setAdapter(listaAdapter);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+    }
+
+    public void consultar(View q){
+        obj = new Consultar();
+        obj.execute();
     }
 
     public void setContentView(int activity_listar) {
@@ -50,7 +91,13 @@ public class ListaLugares extends AppCompatActivity {
             try {
                  urlConexion=new URL(DATA_URL);
                 HttpURLConnection conexion=(HttpURLConnection) urlConexion.openConnection();
+                int conexionStatus = conexion.getResponseCode();
+                if (conexionStatus == HttpURLConnection.HTTP_OK){
+                    System.out.println(conexion.getInputStream());
 
+                }else{
+                    System.out.println("error" + conexionStatus);
+                }
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {

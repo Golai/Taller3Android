@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">taller3</string>
+
+    <string-array name="Depas">
+        <item>Lima</item>
+        <item>Antioquia</item>
+        <item>ValleCauca</item>
+    </string-array>
+    <string-array name="Lima">
+        <item>Lima</item>
+        <item>Callao</item>
+        <item>Chozica</item>
+    </string-array>
+    <string-array name="Antioquia">
+        <item>Antioquia</item>
+        <item>Medellin</item>
+        <item>Jerico</item>
+    </string-array>
+    <string-array name="ValleCauca">
+        <item>ValleCauca</item>
+        <item>Tulua</item>
+    </string-array>
 </resources>
