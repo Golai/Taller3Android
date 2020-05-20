@@ -11,6 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.concurrent.ExecutionException;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
@@ -29,29 +33,33 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnIngresar = findViewById(R.id.btnIngresar);
         btnRegistrar  = findViewById(R.id.btnRegistrar);
         data = findViewById(R.id.datos);
+    }
 
-        //esto es de Gian, ignorar
+    public void ingresar(View v) {
+        Intent ir = new Intent(this, ListaLugares.class);
+        ir.addFlags(ir.FLAG_ACTIVITY_CLEAR_TOP | ir.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(ir);
+
         /*
         btnIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ClassConnection conexion = new ClassConnection();
-                String response;
+                String respuesta;
                 try {
-                    response = conexion.execute().get();
+                    respuesta = conexion.execute("http://www.mocky.io/v2/5ec53e922f0000d4c7dc30cf").get();
+                    JSONObject jsonObject = new JSONObject(respuesta);
+                    JSONArray lista = jsonObject.optJSONArray("areas");
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         });
          */
-    }
-
-    public void ingresar(View v) {
-        data.setText(name.getText().toString() +
-                "\n" + pass.getText().toString());
     }
 
 
