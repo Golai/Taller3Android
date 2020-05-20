@@ -7,13 +7,22 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class ListaLugares extends AppCompatActivity {
 
@@ -21,6 +30,7 @@ public class ListaLugares extends AppCompatActivity {
     Consultar obj= null;
     private Spinner spinDeparta;
     private ListView listaProvi;
+    List<String> usu = new ArrayList<String>();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +64,30 @@ public class ListaLugares extends AppCompatActivity {
 
             }
         });
+        ClassConnection connectio =new ClassConnection();
+        try {
+            String response = connectio.execute("http://www.mocky.io/v2/5ec546622f000094c8dc3125").get();
+
+            ////Leer el formato
+            JSONArray jsonArray=new JSONArray(response);
+            for (int i=0; i<response.length();i++){
+                JSONObject jsonObject= jsonArray.getJSONObject(i);
+                String usuario = jsonObject.getString("user");
+                usu.add(usuario);
+            }
+            spinDeparta.setAdapter((SpinnerAdapter) usu);
+
+
+
+
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
