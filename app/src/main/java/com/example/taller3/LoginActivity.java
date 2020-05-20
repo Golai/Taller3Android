@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.util.concurrent.ExecutionException;
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
     EditText name, pass;
@@ -27,7 +30,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnRegistrar  = findViewById(R.id.btnRegistrar);
         data = findViewById(R.id.datos);
 
-        //btnRegistrar.setOnClickListener(this);
+        //esto es de Gian, ignorar
+        /*
+        btnIngresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClassConnection conexion = new ClassConnection();
+                String response;
+                try {
+                    response = conexion.execute().get();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+         */
     }
 
     public void ingresar(View v) {
