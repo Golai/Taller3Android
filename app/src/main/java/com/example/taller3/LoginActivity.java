@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         data = findViewById(R.id.datos);
     }
 
-    public void ingresar(View v) {
+    public void ingresar(View k) {
         Intent ir = new Intent(this, ListaLugares.class);
         ir.addFlags(ir.FLAG_ACTIVITY_CLEAR_TOP | ir.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(ir);
