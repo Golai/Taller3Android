@@ -1,5 +1,6 @@
 package com.example.taller3;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +24,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+
+
+import com.example.taller3.servicios.*;
 
 public class ListaLugares extends AppCompatActivity{
 
@@ -67,6 +71,11 @@ public class ListaLugares extends AppCompatActivity{
          });
 
 
+    }
+
+    public void llamarServicio(){
+        Intent servicio= new Intent(this, Servicio.class);
+        startService(servicio);
     }
 
 
