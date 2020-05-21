@@ -12,52 +12,58 @@
         android:id="@+id/nombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Name"
+        android:inputType="textPersonName"
         android:textColor="@android:color/darker_gray"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:backgroundTint="#009688"/>
 
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
         android:hint="Password"
         android:inputType="numberPassword"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:backgroundTint="#009688"/>
 
     <Button
         android:id="@+id/btnIngresar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:layout_marginTop="10sp"
+        android:background="@drawable/button_ronded"
+        android:backgroundTint="#009688"
+        android:lineSpacingExtra="10sp"
         android:onClick="ingresar"
-        android:text="Entrar"
+        android:text="Login In"
         android:textAllCaps="false"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        tools:ignore="OnClick" />
 
     <Button
         android:id="@+id/btnRegistrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
+        android:layout_marginTop="10sp"
+        android:background="@drawable/button_conlineas"
         android:onClick="goToRegistro"
-        android:text="Registrar"
+        android:text="Sign Up"
         android:textAllCaps="false"
-        android:textColor="#FFFFFF" />
+        android:textColor="#070707" />
 
-    <Button
-        android:id="@+id/btnLoginG"
-        android:layout_width="match_parent"
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:text="Ingresar con google"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF" />
-
-    <TextView
-        android:id="@+id/datos"
-        android:layout_width="match_parent"
-        android:layout_height="110dp" />
+        android:layout_marginLeft="160sp"
+        android:layout_marginTop="10sp"
+        android:background="@drawable/button_ronded"
+        android:backgroundTint="#FFFFFF"
+        app:buttonSize="icon_only"
+        app:colorScheme="light" />
 
 </LinearLayout>

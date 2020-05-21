@@ -10,10 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class RegistroActivity extends AppCompatActivity {
 
-    EditText name, pass, email, phone;
+    EditText name, pass, email;
     TextView data;
 
     @Override
@@ -24,32 +25,24 @@ public class RegistroActivity extends AppCompatActivity {
         name = findViewById(R.id.nombre);
         pass = findViewById(R.id.password);
         email = findViewById(R.id.email);
-        phone = findViewById(R.id.phone);
         data = findViewById(R.id.datos);
     }
 
     public void ingresar(View v) {
-        data.setText(name.getText().toString() +
+        data.setText("Tus datos son: " +
+                "\n" + name.getText().toString() +
                 "\n" + pass.getText().toString() +
-                "\n" + email.getText().toString() +
-                "\n" + phone.getText().toString());
+                "\n" + email.getText().toString());
+        Toast.makeText(getApplicationContext(), "Registro exitoso", Toast.LENGTH_LONG).show();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        SharedPreferences datos = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor datosEdit = datos.edit();
-        datosEdit.putString("data", data.toString());
-        datosEdit.apply();
     }
 
     protected void onResume() {
         super.onResume();
-        SharedPreferences datos = PreferenceManager.getDefaultSharedPreferences(this);
-        String data1 = data.toString();
-        data1 = datos.getString("data", " Aún no hay datos registrados");
-        data.setText(data1);
     }
 
     public void goToLogin(View k){

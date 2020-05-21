@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,11 +13,15 @@
         android:id="@+id/nombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Name"
+        android:inputType="textPersonName"
         android:textColor="@android:color/darker_gray"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="90dp" />
 
     <EditText
         android:id="@+id/password"
@@ -24,47 +29,58 @@
         android:layout_height="wrap_content"
         android:hint="Password"
         android:inputType="numberPassword"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="146dp" />
 
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Correo"
+        android:hint="Email"
         android:inputType="textEmailAddress"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="208dp" />
 
-    <EditText
-        android:id="@+id/phone"
+    <TextView
+        android:id="@+id/datos"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Celular"
-        android:inputType="phone"
-        android:textSize="14sp" />
+        android:layout_height="110dp"
+        android:layout_marginTop="10sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="605dp" />
 
     <Button
         android:id="@+id/btnIngresar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:layout_marginTop="10sp"
+        android:background="@drawable/button_conlineas"
         android:onClick="ingresar"
-        android:text="Entrar"
+        android:text="Registrar"
         android:textAllCaps="false"
-        android:textColor="#FFFFFF" />
+        android:textColor="#070707"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="306dp" />
 
     <Button
         android:id="@+id/btnRegresar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
+        android:layout_marginTop="10sp"
+        android:background="@drawable/button_ronded"
+        android:backgroundTint="#009688"
         android:onClick="goToLogin"
         android:text="Regresar"
         android:textAllCaps="false"
-        android:textColor="#FFFFFF" />
-
-    <TextView
-        android:id="@+id/datos"
-        android:layout_width="match_parent"
-        android:layout_height="110dp" />
+        android:textColor="#0E0D0D"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="373dp" />
 
 </LinearLayout>

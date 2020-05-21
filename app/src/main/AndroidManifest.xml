@@ -8,18 +8,21 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="App"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".RegistroActivity"></activity>
-        <activity android:name=".LoginActivity">
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+        <activity android:name=".RegistroActivity"
+            android:label="Registro"></activity>
+        <activity android:name=".LoginActivity"
+            android:label="Inicio">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ListaLugares"
+            android:label="Lugares"></activity>
     </application>
 
 </manifest>
