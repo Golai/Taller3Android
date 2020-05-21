@@ -44,6 +44,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnIngresar = findViewById(R.id.btnIngresar);
         btnRegistrar  = findViewById(R.id.btnRegistrar);
 
+<<<<<<< HEAD
+=======
+    public void ingresar(View k) {
+        Intent ir = new Intent(this, ListaLugares.class);
+        ir.addFlags(ir.FLAG_ACTIVITY_CLEAR_TOP | ir.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(ir);
+>>>>>>> 353e1390e3ff6e544f8dee8610b23d64f4bdc38f
 
         btnIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
