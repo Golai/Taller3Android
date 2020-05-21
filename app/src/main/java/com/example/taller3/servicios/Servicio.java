@@ -28,7 +28,7 @@ public class Servicio extends Service {
      * <p class="caution">Note that the system calls this on your
      * service's main thread.  A service's main thread is the same
      * thread where UI operations take place for Activities running in the
-     * same process.  You should always avoid stalling the main
+     * same process.  You should always avoid stalling the mainm
      * thread's event loop.  When doing long-running operations,
      * network calls, or heavy disk I/O, you should kick off a new
      * thread, or use {@link AsyncTask}.</p>

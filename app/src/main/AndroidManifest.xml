@@ -10,29 +10,22 @@
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-<<<<<<< HEAD
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
         <activity android:name=".RegistroActivity"
             android:label="Registro"></activity>
         <activity android:name=".LoginActivity"
             android:label="Inicio">
-=======
-        android:theme="@style/AppTheme">
-        <service
-            android:name=".servicios.Servicio"
-            android:enabled="true"
-            android:exported="true"></service>
-
-        <activity android:name=".RegistroActivity" />
-        <activity android:name=".ListaLugares" />
-        <activity android:name=".LoginActivity">
->>>>>>> 353e1390e3ff6e544f8dee8610b23d64f4bdc38f
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".servicios.Servicio"
+            android:enabled="true"
+            android:exported="true"></service>
         <activity android:name=".ListaLugares"
             android:label="Lugares"></activity>
     </application>
