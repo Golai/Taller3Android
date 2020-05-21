@@ -2,22 +2,24 @@
     <string name="app_name">taller3</string>
 
     <string-array name="Depas">
-        <item>Lima</item>
+        <item>Cauca</item>
         <item>Antioquia</item>
-        <item>ValleCauca</item>
+        <item>Valle</item>
     </string-array>
-    <string-array name="Lima">
-        <item>Lima</item>
-        <item>Callao</item>
-        <item>Chozica</item>
+    <string-array name="Cauca">
+        <item>Popayan</item>
+        <item>Santander de Quilichao</item>
+        <item>Toribio</item>
     </string-array>
     <string-array name="Antioquia">
         <item>Antioquia</item>
         <item>Medellin</item>
         <item>Jerico</item>
     </string-array>
-    <string-array name="ValleCauca">
-        <item>ValleCauca</item>
+    <string-array name="Valle">
+        <item>Cali</item>
         <item>Tulua</item>
+        <item>Buga</item>
+        <item>San Pedro</item>
     </string-array>
 </resources>
