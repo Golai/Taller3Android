@@ -1,6 +1,10 @@
 package com.example.taller3;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,16 +35,14 @@ import com.example.taller3.servicios.*;
 
 public class ListaLugares extends AppCompatActivity{
 
-    String DATA_URL="http://www.mocky.io/v2/5ea8e7e02d000097883a4159";
     private Spinner spinDepartamentos;
     private ListView listaMunicipios;
-    List<String> usu;
 
-    ArrayAdapter<String> adapter_option = null;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar);
+
 
         spinDepartamentos=(Spinner)findViewById(R.id.spinDepartamentos);
         listaMunicipios=(ListView)findViewById(R.id.listMunicipio);
@@ -70,12 +73,57 @@ public class ListaLugares extends AppCompatActivity{
              }
          });
 
-
     }
 
     public void llamarServicio(){
         Intent servicio= new Intent(this, Servicio.class);
         startService(servicio);
+    }
+
+    public boolean conexion(){
+        boolean con=false;
+        ConnectivityManager connectivityManager= (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        boolean isWifiConn=false;
+        boolean isMobileConn=false;
+        for(Network network: connectivityManager.getAllNetworks()){
+            NetworkInfo networkInfo=connectivityManager.getActiveNetworkInfo();
+            if(networkInfo.getType()== ConnectivityManager.TYPE_WIFI){
+                isWifiConn |= networkInfo.isConnected();
+            }
+            if(networkInfo.getType()== ConnectivityManager.TYPE_MOBILE){
+                isMobileConn |= networkInfo.isConnected();
+            }
+        }
+        System.out.println("ya verifico");
+        if(isWifiConn){
+            System.out.println("wifi conectado   ");
+            con=true;
+            try {
+                Toast.makeText(this, "conexion Wifi aprovada", Toast.LENGTH_LONG).show();
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }else if(isMobileConn){
+            System.out.println("datos conectado   ");
+            con=true;
+            try {
+                Toast.makeText(this, "conexion movil aprovada", Toast.LENGTH_LONG).show();
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }else{
+            con=false;
+            Toast.makeText(this, "Sin conexion: ", Toast.LENGTH_LONG).show();
+        }
+        return con;
+    }
+
+    public void backToLogin(){
+        Intent ir = new Intent(this,LoginActivity.class);
+        ir.addFlags(ir.FLAG_ACTIVITY_CLEAR_TOP | ir.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(ir);
     }
 
 

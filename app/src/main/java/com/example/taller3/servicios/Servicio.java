@@ -3,11 +3,27 @@ package com.example.taller3.servicios;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.IBinder;
+import android.widget.Toast;
+
+import com.example.taller3.ListaLugares;
+import com.example.taller3.LoginActivity;
 
 public class Servicio extends Service {
+
     public Servicio() {
+    }
+
+    /**
+     * Called by the system when the service is first created.  Do not call this method directly.
+     */
+    @Override
+    public void onCreate() {
+        super.onCreate();
     }
 
     @Override
@@ -47,6 +63,45 @@ public class Servicio extends Service {
      */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        System.out.println("hola: "+ startId);
+        ConnectivityManager connectivityManager= (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        boolean isWifiConn=false;
+        boolean isMobileConn=false;
+        for(Network network: connectivityManager.getAllNetworks()){
+            NetworkInfo networkInfo=connectivityManager.getActiveNetworkInfo();
+            if(networkInfo.getType()== ConnectivityManager.TYPE_WIFI){
+                isWifiConn |= networkInfo.isConnected();
+            }
+            if(networkInfo.getType()== ConnectivityManager.TYPE_MOBILE){
+                isMobileConn |= networkInfo.isConnected();
+            }
+        }
+        System.out.println("ya verifico");
+        if(isWifiConn){
+            System.out.println("wifi conectado   ");
+
+            try {
+                Toast.makeText(this, "conexion Wifi aprovada", Toast.LENGTH_LONG).show();
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }else if(isMobileConn){
+            System.out.println("datos conectado   ");
+            try {
+                Toast.makeText(this, "conexion movil aprovada", Toast.LENGTH_LONG).show();
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }else{
+            Toast.makeText(this, "Sin conexion: ", Toast.LENGTH_LONG).show();
+            stopSelf();
+        }
         return super.onStartCommand(intent, flags, startId);
     }
+
+
+
 }
+
