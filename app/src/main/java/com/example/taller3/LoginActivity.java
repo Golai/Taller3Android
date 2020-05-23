@@ -56,6 +56,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                ingresar(this);
             }
         });
+        /*
 
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +69,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
 
             }
-        });
+        });*/
 
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -93,10 +94,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     protected void onResume() {
         super.onResume();
-    }
-
-    @Override
-    public void onClick(View w) {
     }
 
     private void signIn() {
@@ -132,6 +129,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             //updateUI(null);
         }
     }
+    @Override
+    public void onClick(View w) {
+        switch (w.getId()){
+        case R.id.sign_in_button:
+        signIn();
+        break;
+        default:
+        Toast.makeText(this, "Hola default", Toast.LENGTH_LONG).show();
+        }
+    }
+
+
 
     public void goToRegistro(View k){
         Intent ir = new Intent(this,RegistroActivity.class);
