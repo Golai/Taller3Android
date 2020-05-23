@@ -31,5 +31,12 @@
     <ListView
         android:id="@+id/listMunicipio"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="538dp" />
+
+    <Button
+        android:id="@+id/singOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sing Out" />
+
 </LinearLayout>

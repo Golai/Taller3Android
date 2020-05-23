@@ -1,32 +1,27 @@
 package com.example.taller3;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 
 import com.example.taller3.servicios.*;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 public class ListaLugares extends AppCompatActivity{
 
@@ -34,8 +29,10 @@ public class ListaLugares extends AppCompatActivity{
     private Spinner spinDepartamentos;
     private ListView listaMunicipios;
     List<String> usu;
+    Button btnSingOut;
 
     ArrayAdapter<String> adapter_option = null;
+    GoogleSignInClient mGoogleSignInClient;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +40,7 @@ public class ListaLugares extends AppCompatActivity{
 
         spinDepartamentos=(Spinner)findViewById(R.id.spinDepartamentos);
         listaMunicipios=(ListView)findViewById(R.id.listMunicipio);
+        btnSingOut = findViewById(R.id.singOut);
 
          ArrayAdapter spinAdapter= ArrayAdapter.createFromResource(this,R.array.Depas, android.R.layout.simple_spinner_item);
          spinDepartamentos.setAdapter(spinAdapter);
@@ -70,12 +68,54 @@ public class ListaLugares extends AppCompatActivity{
              }
          });
 
+         //google
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        //findViewById(R.id.singOut).setOnClickListener((View.OnClickListener) this);
+
+         btnSingOut.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 switch (v.getId()) {
+                     // ...
+                     case R.id.singOut:
+                         signOut();
+                         break;
+                     // ...
+                 }
+             }
+         });
+
+
+
+
 
     }
+
 
     public void llamarServicio(){
         Intent servicio= new Intent(this, Servicio.class);
         startService(servicio);
+    }
+
+    public void goToLogin(){
+        Intent ir = new Intent(this, LoginActivity.class);
+        ir.addFlags(ir.FLAG_ACTIVITY_CLEAR_TOP | ir.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(ir);
+    }
+
+    private void signOut() {
+        mGoogleSignInClient.signOut()
+                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(getApplicationContext(), "Sesión cerrada", Toast.LENGTH_LONG).show();
+                        //goToLogin();
+                        finish();
+                    }
+                });
     }
 
 

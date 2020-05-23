@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">taller3</string>
-
+    <!--<string name = "server_client_id"> 219559523777-an36ih4gjvosc71r1brtp9ch8vuggv8v.apps.googleusercontent.com </string>-->
     <string-array name="Depas">
         <item>Cauca</item>
         <item>Antioquia</item>
@@ -23,3 +23,4 @@
         <item>San Pedro</item>
     </string-array>
 </resources>
+
