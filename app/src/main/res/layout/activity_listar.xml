@@ -11,6 +11,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
         android:text="Departamentos"
         android:textSize="18sp"
         tools:visibility="visible" />
@@ -18,25 +19,32 @@
     <Spinner
         android:id="@+id/spinDepartamentos"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
+        android:textSize="18sp"
         android:visibility="visible" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
         android:text="Municipio"
         android:textSize="18sp" />
 
     <ListView
         android:id="@+id/listMunicipio"
         android:layout_width="match_parent"
-        android:layout_height="538dp" />
+        android:layout_height="470dp"
+        android:textSize="18sp">
+
+    </ListView>
 
     <Button
         android:id="@+id/singOut"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:background="@drawable/button_ronded"
+        android:backgroundTint="#009688"
         android:text="Sing Out" />
 
 </LinearLayout>

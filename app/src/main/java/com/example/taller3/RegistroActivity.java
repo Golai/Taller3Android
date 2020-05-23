@@ -2,6 +2,8 @@ package com.example.taller3;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,6 +18,7 @@ public class RegistroActivity extends AppCompatActivity {
 
     EditText name, pass, email;
     TextView data;
+    Button btnR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,14 +29,46 @@ public class RegistroActivity extends AppCompatActivity {
         pass = findViewById(R.id.password);
         email = findViewById(R.id.email);
         data = findViewById(R.id.datos);
+        btnR = findViewById(R.id.btnRegistrar);
+
+        btnR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                registrar(v);
+            }
+        });
+
     }
 
-    public void ingresar(View v) {
+    public void registrar(View v) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setIcon(R.mipmap.ic_launcher).
+                setTitle("Tus datos son: " + "\n").
+                setMessage(name.getText().toString() + "\n" + pass.getText().toString() + "\n" + email.getText().toString()).
+                setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(), "Registro exitoso", Toast.LENGTH_LONG).show();
+                    }
+                }).
+                setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        /*
         data.setText("Tus datos son: " +
                 "\n" + name.getText().toString() +
                 "\n" + pass.getText().toString() +
                 "\n" + email.getText().toString());
         Toast.makeText(getApplicationContext(), "Registro exitoso", Toast.LENGTH_LONG).show();
+
+         */
     }
 
     @Override

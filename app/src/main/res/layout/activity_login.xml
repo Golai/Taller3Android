@@ -12,13 +12,13 @@
         android:id="@+id/nombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10sp"
+        android:layout_marginTop="150sp"
+        android:backgroundTint="#009688"
         android:ems="10"
         android:hint="Name"
         android:inputType="textPersonName"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="14sp"
-        android:backgroundTint="#009688"/>
+        android:textColor="@android:color/background_dark"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/password"
@@ -27,7 +27,8 @@
         android:layout_marginTop="10sp"
         android:hint="Password"
         android:inputType="numberPassword"
-        android:textSize="14sp"
+        android:textColor="@android:color/background_dark"
+        android:textSize="18sp"
         android:backgroundTint="#009688"/>
 
     <Button
@@ -41,29 +42,28 @@
         android:onClick="ingresar"
         android:text="Login In"
         android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        tools:ignore="OnClick" />
+        tools:ignore="OnClick"
+        android:textColor="#0E0D0D"/>
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:background="@drawable/button_ronded"
+        android:backgroundTint="#FFFFFF"
+        app:buttonSize="wide"
+        app:colorScheme="light" />
 
     <Button
         android:id="@+id/btnRegistrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10sp"
-        android:background="@drawable/button_conlineas"
+        android:background="@drawable/button_ronded"
         android:onClick="goToRegistro"
         android:text="Sign Up"
         android:textAllCaps="false"
-        android:textColor="#070707" />
-
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_in_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="160sp"
-        android:layout_marginTop="10sp"
-        android:background="@drawable/button_ronded"
-        android:backgroundTint="#FFFFFF"
-        app:buttonSize="icon_only"
-        app:colorScheme="light" />
+        android:backgroundTint="#009688"/>
 
 </LinearLayout>

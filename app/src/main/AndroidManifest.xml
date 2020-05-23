@@ -9,12 +9,12 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="App"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
         <activity android:name=".RegistroActivity"
             android:label="Registro"></activity>
-        <activity android:name=".LoginActivity"
-            android:label="Inicio">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,10 +22,12 @@
             </intent-filter>
         </activity>
 
+        <!--
         <service
             android:name=".servicios.Servicio"
             android:enabled="true"
             android:exported="true"></service>
+        -->
         <activity android:name=".ListaLugares"
             android:label="Lugares"></activity>
     </application>

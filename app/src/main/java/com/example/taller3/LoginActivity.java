@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.taller3.servicios.Servicio;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -31,7 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText name, pass;
     Button btnIngresar, btnRegistrar;
@@ -46,38 +47,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         name = findViewById(R.id.nombre);
         pass = findViewById(R.id.password);
         btnIngresar = findViewById(R.id.btnIngresar);
-        btnRegistrar  = findViewById(R.id.btnRegistrar);
+        btnRegistrar = findViewById(R.id.btnRegistrar);
         signInButton = findViewById(R.id.sign_in_button);
-        
 
-        btnIngresar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               ingresar(this);
-            }
-        });
-        /*
+        //boolean goli = conexion();
+        //if (goli) {
+            btnIngresar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-        signInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switch (v.getId()) {
-                    case R.id.sign_in_button:
-                        signIn();
-                        break;
-                    //}
+                    ingresar(this);
                 }
-
-            }
-        });*/
+            });
 
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        findViewById(R.id.sign_in_button).setOnClickListener(this);
-
+            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestEmail()
+                    .build();
+            mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+            findViewById(R.id.sign_in_button).setOnClickListener(this);
+        //}
     }
 
     @Override
@@ -85,6 +74,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onStart();
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         //updateUI(account);
+
     }
 
     @Override
@@ -98,7 +88,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent,0);
+        startActivityForResult(signInIntent, 0);
     }
 
     @Override
@@ -129,69 +119,66 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             //updateUI(null);
         }
     }
+
     @Override
     public void onClick(View w) {
-        switch (w.getId()){
-        case R.id.sign_in_button:
-        signIn();
-        break;
-        default:
-        Toast.makeText(this, "Hola default", Toast.LENGTH_LONG).show();
+        switch (w.getId()) {
+            case R.id.sign_in_button:
+                signIn();
+                break;
         }
     }
 
-
-
-    public void goToRegistro(View k){
-        Intent ir = new Intent(this,RegistroActivity.class);
+    public void goToRegistro(View k) {
+        Intent ir = new Intent(this, RegistroActivity.class);
         ir.addFlags(ir.FLAG_ACTIVITY_CLEAR_TOP | ir.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(ir);
     }
 
-    public void goToListar(){
+    public void goToListar() {
         System.out.println("entre a la actividad listar");
-        Toast.makeText(getApplicationContext(), "Bienvenido", Toast.LENGTH_LONG).show();
         Intent ir = new Intent(this, ListaLugares.class);
         ir.addFlags(ir.FLAG_ACTIVITY_CLEAR_TOP | ir.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(ir);
     }
 
-    public boolean conexion(){
-        boolean con=false;
-        ConnectivityManager connectivityManager= (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-        boolean isWifiConn=false;
-        boolean isMobileConn=false;
-        for(Network network: connectivityManager.getAllNetworks()){
-            NetworkInfo networkInfo=connectivityManager.getActiveNetworkInfo();
-            if(networkInfo.getType()== ConnectivityManager.TYPE_WIFI){
+    public boolean conexion() {
+        boolean con = false;
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        boolean isWifiConn = false;
+        boolean isMobileConn = false;
+
+        for (Network network : connectivityManager.getAllNetworks()) {
+            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+            if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
                 isWifiConn |= networkInfo.isConnected();
             }
-            if(networkInfo.getType()== ConnectivityManager.TYPE_MOBILE){
+            if (networkInfo.getType() == ConnectivityManager.TYPE_MOBILE) {
                 isMobileConn |= networkInfo.isConnected();
             }
         }
-        System.out.println("ya verifico");
-        if(isWifiConn){
-            System.out.println("wifi conectado   ");
-            con=true;
+        //System.out.println("ya verifico");
+        if (isWifiConn) {
+            //System.out.println("wifi conectado  ");
+            con = true;
             try {
-                Toast.makeText(this, "conexion Wifi aprovada", Toast.LENGTH_LONG).show();
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }else if(isMobileConn){
-            System.out.println("datos conectado   ");
-            con=true;
-            try {
-                Toast.makeText(this, "conexion movil aprovada", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Hay conexión por wi-fi", Toast.LENGTH_LONG).show();
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }else{
-            con=false;
-            Toast.makeText(this, "Sin conexion: ", Toast.LENGTH_LONG).show();
+        } else if (isMobileConn) {
+            //System.out.println("datos conectado   ");
+            con = true;
+            try {
+                Toast.makeText(this, "Hay conexión por datos", Toast.LENGTH_LONG).show();
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } else {
+            con = false;
+            Toast.makeText(this, "No hay conexión", Toast.LENGTH_LONG).show();
         }
         return con;
     }
@@ -200,39 +187,42 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //btnIngresar.setOnClickListener(new View.OnClickListener() {
         // @Override
         //public void onClick(View v) {
-        boolean goli = conexion();
-        if (goli) {
-            ClassConnection conexion = new ClassConnection();
-            String respuesta;
-            try {
-                List<String> con = new ArrayList<String>();
-                respuesta = conexion.execute("http://www.mocky.io/v2/5ec53e922f0000d4c7dc30cf").get();
-                JSONObject jsonObject = new JSONObject(respuesta);
-                JSONArray lista = jsonObject.optJSONArray("lugare");
+        //boolean goli = conexion();
+        //if (goli == true) {
+        ClassConnection conexion = new ClassConnection();
+        String respuesta;
+        try {
+            List<String> con = new ArrayList<String>();
+            respuesta = conexion.execute("http://www.mocky.io/v2/5ec53e922f0000d4c7dc30cf").get();
+            JSONObject jsonObject = new JSONObject(respuesta);
+            JSONArray lista = jsonObject.optJSONArray("lugare");
 
-                for (int i = 0; i < lista.length(); i++) {
-                    JSONObject json_data = lista.getJSONObject(i);
-                    if (name.getText().toString().equals("") && pass.getText().toString().equals("")) {
-                        //System.out.println("error, campos vacios");
-                        Toast.makeText(getApplicationContext(), "Error, campos vacios", Toast.LENGTH_LONG).show();
-                    } else {
-                        if ((name.getText().toString().equals(json_data.getString("user"))) &&
-                                (pass.getText().toString().equals(json_data.getString("passw")))) {
-                            //System.out.println("soy un usuario, entre");
-                            goToListar();
-                        } else {
-                            //System.out.println("usuario no registrado");
-                            Toast.makeText(getApplicationContext(), "Usuario no registrado", Toast.LENGTH_LONG).show();
-                        }
-                    }
+            for (int i = 0; i < lista.length(); i++) {
+                JSONObject json_data = lista.getJSONObject(i);
+                if (name.getText().toString().equals("") && pass.getText().toString().equals("")) {
+                    //System.out.println("error, campos vacios");
+                    Toast.makeText(getApplicationContext(), "Error, campos vacios o usuario no registrado", Toast.LENGTH_LONG).show();
+                } else if ((name.getText().toString().equals(json_data.getString("user"))) &&
+                        (pass.getText().toString().equals(json_data.getString("passw")))) {
+                    System.out.println("soy un usuario, entre");
+                    goToListar();
+                } else {
+                    //System.out.println("usuario no registrado");
+                    Toast.makeText(this, "Usuario no registrado", Toast.LENGTH_LONG).show();
                 }
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
             }
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        } catch (ExecutionException ex) {
+            ex.printStackTrace();
+        } catch (JSONException ex) {
+            ex.printStackTrace();
         }
+
+        //} else {
+        //Toast.makeText(this, "Sin conexion: ", Toast.LENGTH_LONG).show();
+        //}
     }
+
+
 }
