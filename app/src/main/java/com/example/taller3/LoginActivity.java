@@ -9,6 +9,7 @@ import android.net.Network;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,8 +51,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnRegistrar = findViewById(R.id.btnRegistrar);
         signInButton = findViewById(R.id.sign_in_button);
 
-        //boolean goli = conexion();
-        //if (goli) {
+        boolean goli = conexion();
+        if (goli == true) {
             btnIngresar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -66,7 +67,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     .build();
             mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
             findViewById(R.id.sign_in_button).setOnClickListener(this);
-        //}
+        }
     }
 
     @Override
@@ -157,9 +158,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 isMobileConn |= networkInfo.isConnected();
             }
         }
-        //System.out.println("ya verifico");
+        System.out.println("ya verifico");
         if (isWifiConn) {
-            //System.out.println("wifi conectado  ");
+            System.out.println("wifi conectado  ");
             con = true;
             try {
                 Toast.makeText(this, "Hay conexión por wi-fi", Toast.LENGTH_LONG).show();
@@ -168,7 +169,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 e.printStackTrace();
             }
         } else if (isMobileConn) {
-            //System.out.println("datos conectado   ");
+            System.out.println("datos conectado   ");
             con = true;
             try {
                 Toast.makeText(this, "Hay conexión por datos", Toast.LENGTH_LONG).show();
@@ -207,8 +208,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     System.out.println("soy un usuario, entre");
                     goToListar();
                 } else {
-                    //System.out.println("usuario no registrado");
-                    Toast.makeText(this, "Usuario no registrado", Toast.LENGTH_LONG).show();
+                    System.out.println("usuario no registrado");
+                    //Toast.makeText(this, "Usuario no registrado", Toast.LENGTH_LONG).show();
                 }
             }
         } catch (InterruptedException ex) {
